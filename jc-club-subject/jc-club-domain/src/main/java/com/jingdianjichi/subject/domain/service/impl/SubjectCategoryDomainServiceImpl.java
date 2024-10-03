@@ -1,6 +1,7 @@
 package com.jingdianjichi.subject.domain.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.jingdianjichi.subject.common.enums.DeletedFlagEnum;
 import com.jingdianjichi.subject.domain.convert.SubjectCategoryConverter;
 import com.jingdianjichi.subject.domain.entity.SubjectCategoryBO;
 import com.jingdianjichi.subject.domain.service.SubjectCategoryDomainService;
@@ -49,4 +50,26 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
         return subjectCategoryBOList;
     }
 
+    /*
+     * 更新分类
+     * */
+    @Override
+    public Boolean update(SubjectCategoryBO subjectCategoryBO) {
+        SubjectCategory subjectCategory = SubjectCategoryConverter.
+                INSTANCE.convertBoToCategory(subjectCategoryBO);
+        int rows = subjectCategoryService.update(subjectCategory);
+        return rows > 0;
+    }
+
+    /*
+     * 删除分类
+     * */
+    @Override
+    public Boolean delete(SubjectCategoryBO subjectCategoryBO) {
+        SubjectCategory subjectCategory = SubjectCategoryConverter.
+                INSTANCE.convertBoToCategory(subjectCategoryBO);
+        subjectCategory.setIsDeleted(DeletedFlagEnum.IS_DELETED.getCode());
+        int rows = subjectCategoryService.update(subjectCategory);
+        return rows > 0;
+    }
 }
