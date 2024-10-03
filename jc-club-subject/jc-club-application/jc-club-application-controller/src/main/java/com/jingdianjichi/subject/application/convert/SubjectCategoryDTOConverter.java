@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import javax.security.auth.Subject;
+import java.util.List;
 
 @Mapper
 public interface SubjectCategoryDTOConverter {
@@ -13,4 +14,6 @@ public interface SubjectCategoryDTOConverter {
     SubjectCategoryDTOConverter INSTANCE = Mappers.getMapper(SubjectCategoryDTOConverter.class);
 
     SubjectCategoryBO convertBoToCategory(SubjectCategoryDTO subjectCategoryDTO);
+
+    List<SubjectCategoryDTO> convertBoToCategoryDTOList(List<SubjectCategoryBO> subjectCategoryBOList);
 }

@@ -69,6 +69,17 @@
             </if>
         </where>
     </select>
+    <select id="queryPrimaryCategory" resultMap="SubjectCategoryMap">
+        select * from subject_category
+        <where>
+            <if test="parentId != null">
+                and parent_id = #{parentId}
+            </if>
+            <if test="isDeleted != null">
+                and is_deleted = #{isDeleted}
+            </if>
+        </where>
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">

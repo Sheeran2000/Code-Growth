@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /*
  * 刷题分类controller
@@ -25,6 +26,9 @@ public class SubjectCategoryController {
     @Resource
     private SubjectCategoryDomainService subjectCategoryDomainService;
 
+    /**
+     * 新增分类
+     */
     @PostMapping("/add")
     public Result<Boolean> add(@RequestBody SubjectCategoryDTO subjectCategoryDTO) {
         try {
@@ -42,4 +46,43 @@ public class SubjectCategoryController {
             return Result.fail();
         }
     }
+
+
+    /**
+     * 查询岗位大类
+     */
+    @PostMapping("queryPrimaryCategory")
+    public Result<List<SubjectCategoryDTO>> queryPrimaryCategory(){
+        try {
+
+            List<SubjectCategoryBO> subjectCategoryBOList = subjectCategoryDomainService.
+                    queryPrimaryCategory();
+
+            List<SubjectCategoryDTO> subjectCategoryDTOList = SubjectCategoryDTOConverter.
+                    INSTANCE.convertBoToCategoryDTOList(subjectCategoryBOList);
+
+            return Result.ok(subjectCategoryDTOList);
+
+
+        }catch (Exception e){
+            log.error("SubjectCategoryController.queryPrimaryCategory.error:{}", e.getMessage(), e);
+            return Result.fail("查询失败");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

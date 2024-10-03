@@ -10,9 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -34,4 +32,20 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
 
         subjectCategoryService.insert(subjectCategory);
     }
+
+    @Override
+    public List<SubjectCategoryBO> queryPrimaryCategory() {
+        SubjectCategory subjectCategory = new SubjectCategory();
+        subjectCategory.setParentId(0L);
+       List<SubjectCategory> subjectCategoryList = subjectCategoryService.queryPrimaryCategory(subjectCategory);
+
+        List<SubjectCategoryBO> subjectCategoryBOList = SubjectCategoryConverter.
+                INSTANCE.convertCategoryToBo(subjectCategoryList);
+        if (log.isInfoEnabled()) {
+            log.info("SubjectCategoryController.query.boList:{}", JSON.toJSONString(subjectCategoryBOList));
+        }
+
+        return subjectCategoryBOList;
+    }
+
 }
