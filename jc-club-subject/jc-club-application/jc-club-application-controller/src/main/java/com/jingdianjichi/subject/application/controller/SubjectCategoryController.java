@@ -49,14 +49,15 @@ public class SubjectCategoryController {
 
 
     /**
-     * 查询岗位大类
+     * 查询题目大类
      */
     @PostMapping("queryPrimaryCategory")
-    public Result<List<SubjectCategoryDTO>> queryPrimaryCategory(){
+    public Result<List<SubjectCategoryDTO>> queryPrimaryCategory() {
         try {
+            SubjectCategoryBO subjectCategoryBO = new SubjectCategoryBO();
 
             List<SubjectCategoryBO> subjectCategoryBOList = subjectCategoryDomainService.
-                    queryPrimaryCategory();
+                    queryCategory(subjectCategoryBO);
 
             List<SubjectCategoryDTO> subjectCategoryDTOList = SubjectCategoryDTOConverter.
                     INSTANCE.convertBoToCategoryDTOList(subjectCategoryBOList);
@@ -64,25 +65,41 @@ public class SubjectCategoryController {
             return Result.ok(subjectCategoryDTOList);
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error("SubjectCategoryController.queryPrimaryCategory.error:{}", e.getMessage(), e);
             return Result.fail("查询失败");
         }
+
+
     }
 
+    /*
+     * 查询大类下分类
+     * */
+    @PostMapping("queryCategoryByPrimary")
+    public Result<List<SubjectCategoryDTO>> queryCategoryByPrimary(@RequestBody SubjectCategoryDTO subjectCategoryDTO) {
+        try {
+
+            if (log.isInfoEnabled()) {
+                log.info("SubjectCategoryController.queryCategoryByPrimary.dto:{}", JSON.toJSONString(subjectCategoryDTO));
+            }
+            Preconditions.checkNotNull(subjectCategoryDTO.getParentId(), "分类id不能为空");
+
+            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.
+                    INSTANCE.convertDTOToCategoryBO(subjectCategoryDTO);
+
+            List<SubjectCategoryBO> subjectCategoryBOList = subjectCategoryDomainService.
+                    queryCategory(subjectCategoryBO);
+
+            List<SubjectCategoryDTO> subjectCategoryDTOList = SubjectCategoryDTOConverter.
+                    INSTANCE.convertBoToCategoryDTOList(subjectCategoryBOList);
+
+            return Result.ok(subjectCategoryDTOList);
+        } catch (Exception e) {
+            log.error("SubjectCategoryController.queryPrimaryCategory.error:{}", e.getMessage(), e);
+            return Result.fail("查询失败");
+        }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 }
