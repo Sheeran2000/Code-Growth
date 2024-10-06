@@ -100,7 +100,7 @@
                 and update_time = #{updateTime}
             </if>
             <if test="isDeleted != null">
-                is_deleted = 1,
+                and is_deleted = #{isDeleted}
             </if>
         </where>
     </select>

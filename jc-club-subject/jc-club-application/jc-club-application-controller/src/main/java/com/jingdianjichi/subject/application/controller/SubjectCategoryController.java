@@ -52,9 +52,10 @@ public class SubjectCategoryController {
      * 查询题目大类
      */
     @PostMapping("/queryPrimaryCategory")
-    public Result<List<SubjectCategoryDTO>> queryPrimaryCategory() {
+    public Result<List<SubjectCategoryDTO>> queryPrimaryCategory(@RequestBody SubjectCategoryDTO subjectCategoryDTO) {
         try {
-            SubjectCategoryBO subjectCategoryBO = new SubjectCategoryBO();
+            SubjectCategoryBO subjectCategoryBO = SubjectCategoryDTOConverter.
+                    INSTANCE.convertDTOToCategoryBO(subjectCategoryDTO);
 
             List<SubjectCategoryBO> subjectCategoryBOList = subjectCategoryDomainService.
                     queryCategory(subjectCategoryBO);
@@ -99,7 +100,6 @@ public class SubjectCategoryController {
             log.error("SubjectCategoryController.queryCategory.error:{}", e.getMessage(), e);
             return Result.fail("查询失败");
         }
-
 
     }
 

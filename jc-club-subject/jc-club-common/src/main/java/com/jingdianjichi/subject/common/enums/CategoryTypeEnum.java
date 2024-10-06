@@ -3,22 +3,22 @@ package com.jingdianjichi.subject.common.enums;
 import lombok.Getter;
 
 @Getter
-public enum DeletedFlagEnum {
+public enum CategoryTypeEnum {
 
-    UN_DELETED(0, "未删除"),
-    IS_DELETED(1, "已删除");
+    PRIMARY(1, "岗位大类"),
+    SECOND(2, "二级分类");
 
     public int code;
 
     public String desc;
 
-    DeletedFlagEnum(int code, String desc) {
+    CategoryTypeEnum(int code, String desc) {
         this.code = code;
         this.desc = desc;
     }
 
-    public static DeletedFlagEnum getByCode(int codeValue){
-        for (DeletedFlagEnum resultCodeEnum : DeletedFlagEnum.values()){
+    public static CategoryTypeEnum getByCode(int codeValue){
+        for (CategoryTypeEnum resultCodeEnum : CategoryTypeEnum.values()){
             if(resultCodeEnum.code == codeValue){
                 return resultCodeEnum;
             }

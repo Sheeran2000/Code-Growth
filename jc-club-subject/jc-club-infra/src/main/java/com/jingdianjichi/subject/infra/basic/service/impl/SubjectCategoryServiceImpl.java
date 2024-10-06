@@ -2,6 +2,7 @@ package com.jingdianjichi.subject.infra.basic.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.jingdianjichi.subject.common.enums.DeletedFlagEnum;
 import com.jingdianjichi.subject.infra.basic.entity.SubjectCategory;
 import com.jingdianjichi.subject.infra.basic.mapper.SubjectCategoryDao;
 import com.jingdianjichi.subject.infra.basic.service.SubjectCategoryService;
@@ -74,6 +75,7 @@ public class SubjectCategoryServiceImpl implements SubjectCategoryService {
 
     @Override
     public List<SubjectCategory> queryCategory(SubjectCategory subjectCategory) {
+        subjectCategory.setIsDeleted(DeletedFlagEnum.UN_DELETED.getCode());
         return subjectCategoryDao.queryCategory(subjectCategory);
     }
 }
