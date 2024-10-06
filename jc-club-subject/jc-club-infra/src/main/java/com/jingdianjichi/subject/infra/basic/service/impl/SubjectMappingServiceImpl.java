@@ -38,8 +38,8 @@ public class SubjectMappingServiceImpl implements SubjectMappingService {
      * @return 实例对象
      */
     @Override
-    public int  insert(SubjectMapping subjectMapping) {
-       return this.subjectMappingDao.insert(subjectMapping);
+    public int insert(SubjectMapping subjectMapping) {
+        return this.subjectMappingDao.insert(subjectMapping);
     }
 
     /**
@@ -50,7 +50,7 @@ public class SubjectMappingServiceImpl implements SubjectMappingService {
      */
     @Override
     public int update(SubjectMapping subjectMapping) {
-       return this.subjectMappingDao.update(subjectMapping);
+        return this.subjectMappingDao.update(subjectMapping);
 
     }
 
@@ -66,10 +66,15 @@ public class SubjectMappingServiceImpl implements SubjectMappingService {
     }
 
     /*
-    * 查询标签id
-    * */
+     * 查询标签id
+     * */
     @Override
     public List<SubjectMapping> queryLabelId(SubjectMapping subjectMapping) {
         return this.subjectMappingDao.queryDistinctById(subjectMapping);
+    }
+
+    @Override
+    public void batchInsert(List<SubjectMapping> mappingList) {
+        this.subjectMappingDao.insertBatch(mappingList);
     }
 }
