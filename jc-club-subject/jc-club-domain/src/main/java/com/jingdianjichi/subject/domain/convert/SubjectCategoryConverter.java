@@ -7,6 +7,10 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
+/*
+ * 分类BO的转换
+ * */
+
 @Mapper
 public interface SubjectCategoryConverter {
 

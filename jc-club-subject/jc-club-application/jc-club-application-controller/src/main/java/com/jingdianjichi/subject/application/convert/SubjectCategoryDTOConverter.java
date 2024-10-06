@@ -8,6 +8,9 @@ import org.mapstruct.factory.Mappers;
 import javax.security.auth.Subject;
 import java.util.List;
 
+/*
+分类DTO的转换
+* */
 @Mapper
 public interface SubjectCategoryDTOConverter {
 

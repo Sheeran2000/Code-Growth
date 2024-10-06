@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 题目分类(SubjectCategory)实体类
+ * 题目分类(SubjectCategory)DTO
  *
  * @author makejava
  * @since 2024-10-02 10:17:20

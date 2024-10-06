@@ -4,6 +4,9 @@ import com.jingdianjichi.subject.domain.entity.SubjectCategoryBO;
 
 import java.util.List;
 
+/*
+* 分类标签领域服务
+* */
 
 public interface SubjectCategoryDomainService {
 

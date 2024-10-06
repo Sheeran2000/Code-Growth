@@ -43,7 +43,7 @@ public class SubjectCategoryController {
             return Result.ok(true);
         } catch (Exception e) {
             log.error("SubjectCategoryController.add.error:{}", e.getMessage(), e);
-            return Result.fail();
+            return Result.fail("新增分类失败");
         }
     }
 
