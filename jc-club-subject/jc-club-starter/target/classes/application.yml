@@ -3,7 +3,7 @@ spring:
     username: root
     password: TNv5cleLDezzhlW+r804fQSskW0JoWwv84QKfjyQOA298421C2B++tqHLAwRjpleJ336v+8VcCkP3oSR5sGhAA==
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://120.27.235.217:3306/jc-club?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&AllowPublicKeyRetrieval=True
+    url: jdbc:mysql://121.41.38.228:3306/jc-club?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&AllowPublicKeyRetrieval=True
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       initial-size: 20
