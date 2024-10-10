@@ -4,6 +4,7 @@ import com.jingdianjichi.subject.common.enums.DeletedFlagEnum;
 import com.jingdianjichi.subject.common.enums.SubjectInfoTypeEnum;
 import com.jingdianjichi.subject.domain.convert.SubjectBriefConverter;
 import com.jingdianjichi.subject.domain.entity.SubjectInfoBO;
+import com.jingdianjichi.subject.domain.entity.SubjectOptionBO;
 import com.jingdianjichi.subject.infra.basic.entity.SubjectBrief;
 import com.jingdianjichi.subject.infra.basic.service.SubjectBriefService;
 import org.springframework.stereotype.Component;
@@ -11,10 +12,10 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 /*
-* 简答的题目策略类
-* */
+ * 简答的题目策略类
+ * */
 @Component
-public class BriefTypeHandler implements SubjectTypeHandler{
+public class BriefTypeHandler implements SubjectTypeHandler {
 
     @Resource
     private SubjectBriefService subjectBriefService;
@@ -32,5 +33,15 @@ public class BriefTypeHandler implements SubjectTypeHandler{
         subjectBrief.setIsDeleted(DeletedFlagEnum.UN_DELETED.getCode());
         subjectBriefService.insert(subjectBrief);
 
+    }
+
+    @Override
+    public SubjectOptionBO query(int subjectId) {
+        SubjectBrief subjectBrief = new SubjectBrief();
+        subjectBrief.setSubjectId(subjectId);
+        SubjectBrief result = subjectBriefService.queryByCondition(subjectBrief);
+        SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
+        subjectOptionBO.setSubjectAnswer(result.getSubjectAnswer());
+        return subjectOptionBO;
     }
 }

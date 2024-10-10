@@ -20,6 +20,8 @@ public interface SubjectInfoDTOConverter {
 
     SubjectInfoBO convertSubjectInfoDtoToBO(SubjectInfoDTO subjectInfoDTO);
 
+    SubjectInfoDTO convertBoToDto(SubjectInfoBO subjectInfoBO);
+
 
 
 

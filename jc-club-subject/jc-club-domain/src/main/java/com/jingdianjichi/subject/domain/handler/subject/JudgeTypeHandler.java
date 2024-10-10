@@ -2,13 +2,16 @@ package com.jingdianjichi.subject.domain.handler.subject;
 
 import com.jingdianjichi.subject.common.enums.DeletedFlagEnum;
 import com.jingdianjichi.subject.common.enums.SubjectInfoTypeEnum;
+import com.jingdianjichi.subject.domain.convert.JudgeSubjectConverter;
 import com.jingdianjichi.subject.domain.entity.SubjectAnswerBO;
 import com.jingdianjichi.subject.domain.entity.SubjectInfoBO;
+import com.jingdianjichi.subject.domain.entity.SubjectOptionBO;
 import com.jingdianjichi.subject.infra.basic.entity.SubjectJudge;
 import com.jingdianjichi.subject.infra.basic.service.SubjectJudgeService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /*
  * 判断的题目策略类
@@ -33,5 +36,16 @@ public class JudgeTypeHandler implements SubjectTypeHandler {
         subjectJudge.setIsCorrect(subjectAnswerBO.getIsCorrect());
         subjectJudge.setIsDeleted(DeletedFlagEnum.UN_DELETED.getCode());
         subjectJudgeService.insert(subjectJudge);
+    }
+
+    @Override
+    public SubjectOptionBO query(int subjectId) {
+        SubjectJudge subjectJudge = new SubjectJudge();
+        subjectJudge.setSubjectId(Long.valueOf(subjectId));
+        List<SubjectJudge> result = subjectJudgeService.queryByCondition(subjectJudge);
+        List<SubjectAnswerBO> subjectAnswerBOList = JudgeSubjectConverter.INSTANCE.convertEntityToBoList(result);
+        SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
+        subjectOptionBO.setOptionList(subjectAnswerBOList);
+        return subjectOptionBO;
     }
 }

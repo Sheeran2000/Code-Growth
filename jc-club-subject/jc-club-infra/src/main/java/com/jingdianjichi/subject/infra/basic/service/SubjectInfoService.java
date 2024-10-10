@@ -2,6 +2,9 @@ package com.jingdianjichi.subject.infra.basic.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jingdianjichi.subject.infra.basic.entity.SubjectInfo;
+
+import java.util.List;
+
 /**
  * 题目信息表(SubjectInfo)表服务接口
  *
@@ -9,6 +12,8 @@ import com.jingdianjichi.subject.infra.basic.entity.SubjectInfo;
  * @since 2024-10-06 16:45:56
  */
 public interface SubjectInfoService {
+
+     List<SubjectInfo> queryPage(SubjectInfo subjectInfo, Long categoryId, Long labelId, int start, Integer pageSize);
 
     /**
      * 通过ID查询单条数据
@@ -42,4 +47,5 @@ public interface SubjectInfoService {
      */
     boolean deleteById(Long id);
 
+    int countByCondition(SubjectInfo subjectInfo, Long categoryId, Long labelId);
 }

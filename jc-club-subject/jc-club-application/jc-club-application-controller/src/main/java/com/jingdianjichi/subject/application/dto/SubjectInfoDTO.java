@@ -1,5 +1,6 @@
 package com.jingdianjichi.subject.application.dto;
 
+import com.jingdianjichi.subject.common.entity.PageInfo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,7 +14,7 @@ import java.util.List;
  * @since 2024-10-06 16:45:56
  */
 @Data
-public class SubjectInfoDTO implements Serializable {
+public class SubjectInfoDTO extends PageInfo implements Serializable {
     private static final long serialVersionUID = 410303153841866320L;
     /**
      * 主键
@@ -54,6 +55,10 @@ public class SubjectInfoDTO implements Serializable {
      * 标签id
      */
     private List<Integer> labelIds;
+    /**
+     * 标签name
+     */
+    private List<String> labelName;
 
 
     /**
@@ -83,6 +88,10 @@ public class SubjectInfoDTO implements Serializable {
      * 答案选项
      */
     private List<SubjectAnswerDTO> optionList;
+
+    private Long categoryId;
+
+    private Long labelId;
 
 
 }
