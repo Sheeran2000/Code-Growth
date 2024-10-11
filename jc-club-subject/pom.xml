@@ -18,9 +18,6 @@
         <module>jc-club-common</module>
         <module>jc-club-infra</module>
         <module>jc-club-starter</module>
-        <module>jc-club-application/jc-club-application-controller</module>
-        <module>jc-club-application/jc-club-application-job</module>
-        <module>jc-club-application/jc-club-application-mq</module>
     </modules>
 
     <dependencies>
