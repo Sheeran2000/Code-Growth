@@ -30,3 +30,7 @@ publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAImASxnVV3YH9sEkIfVB2PO3U1lT9Nbi3WhCx
 
 logging:
   config: classpath:log4j2-spring.xml
+
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
